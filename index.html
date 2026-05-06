@@ -1,163 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Shadid Animart - Premium Anime Merch, Figures & Deals">
-    <meta name="keywords" content="anime figures, cosplay, nendoroid, shadid animart">
-    <title>Shadid Animart | Neon Otaku Marketplace</title>
-   
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link rel="icon" href="https://via.placeholder.com/64/22d3ee/ffffff?text=SA">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shadid Animart</title>
+
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
+
 <body>
-    <!-- NAVBAR -->
-    <nav class="navbar">
-        <div class="container nav-container">
-            <div class="logo">Shadid<span>Animart</span></div>
-           
-            <div class="nav-menu">
-                <a href="#categories" data-translate="nav.categories">Realms</a>
-                <a href="#deals" data-translate="nav.deals">Neon Deals</a>
-            </div>
-            <div class="search-container">
-                <i class="fas fa-search"></i>
-                <input type="text" id="searchInput" placeholder="Search figures, cosplay..." onkeyup="handleSearch()">
-            </div>
-            <div class="nav-right">
-                <select id="langSelect" onchange="changeLanguage(this.value)">
-                    <option value="en">🇬🇧 English</option>
-                    <option value="bn">🇧🇩 বাংলা</option>
-                    <option value="es">🇪🇸 Español</option>
-                    <option value="fr">🇫🇷 Français</option>
-                    <option value="hi">🇮🇳 हिन्दी</option>
-                    <option value="ja">🇯🇵 日本語</option>
-                </select>
-                <select id="currencySelect" onchange="changeCurrency()">
-                    <option value="USD">USD</option>
-                    <option value="BDT">BDT</option>
-                    <option value="EUR">EUR</option>
-                    <option value="JPY">JPY</option>
-                    <option value="INR">INR</option>
-                    <option value="GBP">GBP</option>
-                </select>
-                <button id="themeToggle" class="theme-btn"><i class="fas fa-moon"></i></button>
-                <button class="btn-primary bubble-btn">Join My Squad</button>
-            </div>
-        </div>
-    </nav>
 
-    <!-- HERO -->
-    <header class="hero">
-        <div class="hero-bg"></div>
-        <div class="container">
-            <h1 data-translate="hero.title">Level Up Your Collection.<br>Earn While You Otaku.</h1>
-            <p data-translate="hero.subtitle">Premium anime figures, cosplay, merch & tech from Amazon, Alibaba & AliExpress.</p>
-            <button onclick="scrollToDeals()" class="btn-primary bubble-btn large" data-translate="hero.cta">Enter the Neon Shop</button>
-        </div>
-    </header>
+<!-- 🎥 VIDEO BACKGROUND -->
+<video id="bgVideo" autoplay muted playsinline></video>
 
-    <!-- CATEGORIES -->
-    <section id="categories" class="section">
-        <div class="container">
-            <h2 data-translate="categories.title">Choose Your Realm</h2>
-            <div class="categories-grid" id="categoriesGrid"></div>
-        </div>
-    </section>
+<!-- NAV -->
+<nav class="navbar glass">
+    <div class="logo">Shadid<span>Animart</span></div>
 
-    <!-- DEALS -->
-    <section id="deals" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 data-translate="deals.title">Trending in the Animeverse</h2>
-                <div class="controls-group">
-                    <button onclick="toggleFilterPanel()" class="filter-btn">
-                        <i class="fas fa-sliders-h"></i> Filters
-                    </button>
-                    <select id="sortSelect" onchange="applySort()">
-                        <option value="default">Recommended</option>
-                        <option value="price-low">Price: Low → High</option>
-                        <option value="price-high">Price: High → Low</option>
-                        <option value="commission">Highest Commission</option>
-                    </select>
-                </div>
-            </div>
-            <div class="products-grid" id="productsGrid"></div>
-        </div>
-    </section>
-
-    <!-- FILTER PANEL -->
-    <div id="filterPanel" class="filter-panel">
-        <div class="filter-content">
-            <h3 data-translate="filter.title">Advanced Filters</h3>
-            <button class="close-filter" onclick="toggleFilterPanel()">✕</button>
-           
-            <div class="filter-group">
-                <label data-translate="filter.price">Price Range</label>
-                <div class="price-inputs">
-                    <input type="number" id="minPrice" placeholder="Min" oninput="applyFilters()">
-                    <span>-</span>
-                    <input type="number" id="maxPrice" placeholder="Max" oninput="applyFilters()">
-                </div>
-            </div>
-            <div class="filter-group">
-                <label data-translate="filter.commission">Minimum Commission</label>
-                <select id="minCommission" onchange="applyFilters()">
-                    <option value="0">Any</option>
-                    <option value="5">5%+</option>
-                    <option value="10">10%+</option>
-                    <option value="15">15%+</option>
-                </select>
-            </div>
-            <button onclick="resetFilters()" class="reset-btn" data-translate="filter.reset">Reset Filters</button>
-        </div>
+    <div class="nav-right">
+        <select id="currencySelect" onchange="changeCurrency()">
+            <option value="USD">$ USD</option>
+            <option value="BDT">৳ BDT</option>
+        </select>
     </div>
+</nav>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h3 class="logo">Shadid<span>Animart</span></h3>
-                    <p data-translate="footer.tagline">Leveling up otakus one deal at a time • Made with 🔥 in Bangladesh</p>
-                </div>
-                <div class="footer-col">
-                    <h4 data-translate="footer.quick">Quick Links</h4>
-                    <a href="#categories" data-translate="nav.categories">Realms</a>
-                    <a href="#deals" data-translate="nav.deals">Neon Deals</a>
-                    <a href="#">Become an Affiliate</a>
-                </div>
-                <div class="footer-col">
-                    <h4 data-translate="footer.stores">Popular Stores</h4>
-                    <a href="#">Amazon</a>
-                    <a href="#">Alibaba</a>
-                    <a href="#">AliExpress</a>
-                </div>
-                <div class="footer-col">
-                    <h4 data-translate="footer.connect">Connect</h4>
-                    <div class="social-icons">
-                        <a href="https://www.facebook.com/share/1C2KcQfwvn/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/shadid0504" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://x.com/ShadidAhamed" target="_blank"><i class="fab fa-x-twitter"></i></a>
-                        <a href="https://wa.me/8801326162684" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Shadid Animart. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
+<!-- HERO -->
+<header class="hero">
+    <h1>Level Up Your Collection</h1>
+    <p>Anime Figures • Cosplay • Affiliate Deals</p>
+    <button onclick="scrollToDeals()">Enter Shop</button>
+</header>
 
-    <!-- PRODUCT MODAL -->
-    <div id="productModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">×</span>
-            <div id="modalBody"></div>
-        </div>
+<!-- PRODUCTS -->
+<section id="deals">
+    <h2>🔥 Trending Anime Deals</h2>
+    <div id="productsGrid"></div>
+</section>
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+    <div class="modal-content glass">
+        <span onclick="closeModal()">×</span>
+        <div id="modalBody"></div>
     </div>
+</div>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
