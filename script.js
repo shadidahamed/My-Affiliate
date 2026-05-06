@@ -2,7 +2,7 @@
 const translations = {
     en: {
         "hero.title": "Smart Shopping. Smart Earning.",
-        "hero.subtitle": "Curated best deals from Amazon, Alibaba, AliExpress & more. Shop smart and earn with me.",
+        "hero.subtitle": "Curated best deals from Amazon, Alibaba, AliExpress & more. Shop smart and earn commissions with me.",
         "hero.cta": "Explore Deals",
         "deals.title": "Trending Deals - Amazon & Alibaba",
         "nav.deals": "Best Deals",
@@ -32,7 +32,7 @@ const products = [
         commission: "8-12%",
         image: "https://picsum.photos/id/201/800/600",
         store: "Amazon",
-        description: "Premium noise cancelling headphones. Best seller on Amazon."
+        description: "Industry-leading noise cancelling headphones with premium sound quality."
     },
     {
         id: 2,
@@ -41,7 +41,7 @@ const products = [
         commission: "6-10%",
         image: "https://picsum.photos/id/180/800/600",
         store: "Amazon",
-        description: "Latest Apple MacBook with M4 chip."
+        description: "Powerful laptop with M4 chip and stunning display."
     },
     {
         id: 3,
@@ -66,7 +66,7 @@ function renderProducts() {
             <img src="${p.image}" alt="${p.name}">
             <div class="product-info">
                 <h3>${p.name}</h3>
-                <p style="color:#4ade80; margin:8px 0;">${p.commission} Commission • ${p.store}</p>
+                <p class="commission">${p.commission} Commission • ${p.store}</p>
                 <p class="price">${getPrice(p.price)}</p>
             </div>
         </div>
@@ -79,19 +79,19 @@ function showProduct(id) {
     const affiliateLink = `https://shadidanimart.com/ref/shadid-${p.id}`;
 
     modalBody.innerHTML = `
-        <img src="${p.image}" style="width:100%;">
+        <img src="${p.image}" style="width:100%; display:block;">
         <div style="padding:30px">
             <h2>${p.name}</h2>
-            <p style="color:#0ea5e9; font-size:1.8rem; margin:15px 0;">${getPrice(p.price)}</p>
+            <p style="color:#0ea5e9; font-size:1.9rem; margin:15px 0;">${getPrice(p.price)}</p>
             <p><strong>Store:</strong> ${p.store}</p>
             <p>${p.description}</p>
             
-            <div class="affiliate-link" style="margin:20px 0; padding:16px; background:#1e2937; border-radius:12px;">
+            <div class="affiliate-link">
                 <strong>Your Affiliate Link:</strong><br>
                 ${affiliateLink}
             </div>
             
-            <button onclick="copyLink('${affiliateLink}')" style="width:100%; padding:16px; background:#0ea5e9; color:#000; border:none; border-radius:12px; font-weight:bold;">
+            <button onclick="copyLink('${affiliateLink}')" style="width:100%; padding:16px; background:#0ea5e9; color:#000; border:none; border-radius:12px; font-weight:bold; font-size:1.1rem;">
                 📋 Copy Affiliate Link
             </button>
         </div>
@@ -100,17 +100,22 @@ function showProduct(id) {
 }
 
 function copyLink(link) {
-    navigator.clipboard.writeText(link);
-    alert("✅ Affiliate link copied! Ready to share.");
+    navigator.clipboard.writeText(link).then(() => {
+        alert("✅ Affiliate link copied successfully!");
+    });
 }
 
-function closeModal() { document.getElementById("productModal").style.display = "none"; }
+function closeModal() {
+    document.getElementById("productModal").style.display = "none";
+}
 
 function changeLanguage(lang) {
     currentLang = lang;
     document.querySelectorAll('[data-translate]').forEach(el => {
         const key = el.getAttribute('data-translate');
-        if (translations[lang][key]) el.textContent = translations[lang][key];
+        if (translations[lang] && translations[lang][key]) {
+            el.textContent = translations[lang][key];
+        }
     });
 }
 
@@ -123,19 +128,22 @@ function scrollToDeals() {
     document.getElementById("deals").scrollIntoView({ behavior: "smooth" });
 }
 
-// Theme
 function initTheme() {
-    if (localStorage.getItem("theme") === "light") document.body.classList.add("light");
+    if (localStorage.getItem("theme") === "light") {
+        document.body.classList.add("light");
+    }
     document.getElementById("themeToggle").addEventListener("click", () => {
         document.body.classList.toggle("light");
         localStorage.setItem("theme", document.body.classList.contains("light") ? "light" : "dark");
     });
 }
 
+// Initialize Everything
 document.addEventListener("DOMContentLoaded", () => {
     renderProducts();
     initTheme();
-    
+
+    // Auto detect Bangladesh
     if (navigator.language.includes("bn")) {
         document.getElementById("langSelect").value = "bn";
         changeLanguage("bn");
