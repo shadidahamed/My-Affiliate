@@ -27,15 +27,23 @@
             </div>
             <div class="nav-right">
                 <select id="langSelect" onchange="changeLanguage(this.value)">
-                    <option value="en">🇬🇧 EN</option>
+                    <option value="en">🇬🇧 English</option>
                     <option value="bn">🇧🇩 বাংলা</option>
+                    <option value="es">🇪🇸 Español</option>
+                    <option value="fr">🇫🇷 Français</option>
+                    <option value="hi">🇮🇳 हिन्दी</option>
+                    <option value="ja">🇯🇵 日本語</option>
                 </select>
                 <select id="currencySelect" onchange="changeCurrency()">
                     <option value="USD">USD</option>
                     <option value="BDT">BDT</option>
+                    <option value="EUR">EUR</option>
+                    <option value="JPY">JPY</option>
+                    <option value="INR">INR</option>
+                    <option value="GBP">GBP</option>
                 </select>
                 <button id="themeToggle" class="theme-btn"><i class="fas fa-moon"></i></button>
-                <button class="btn-primary">Join My Squad</button>
+                <button class="btn-primary bubble-btn">Join My Squad</button>
             </div>
         </div>
     </nav>
@@ -46,7 +54,7 @@
         <div class="container">
             <h1 data-translate="hero.title">Level Up Your Collection.<br>Earn While You Otaku.</h1>
             <p data-translate="hero.subtitle">Premium anime figures, cosplay, merch & tech from Amazon, Alibaba & AliExpress.</p>
-            <button onclick="scrollToDeals()" class="btn-primary large" data-translate="hero.cta">Enter the Neon Shop</button>
+            <button onclick="scrollToDeals()" class="btn-primary bubble-btn large" data-translate="hero.cta">Enter the Neon Shop</button>
         </div>
     </header>
 
@@ -82,11 +90,11 @@
     <!-- FILTER PANEL -->
     <div id="filterPanel" class="filter-panel">
         <div class="filter-content">
-            <h3>Advanced Filters</h3>
+            <h3 data-translate="filter.title">Advanced Filters</h3>
             <button class="close-filter" onclick="toggleFilterPanel()">✕</button>
            
             <div class="filter-group">
-                <label>Price Range</label>
+                <label data-translate="filter.price">Price Range</label>
                 <div class="price-inputs">
                     <input type="number" id="minPrice" placeholder="Min" oninput="applyFilters()">
                     <span>-</span>
@@ -94,7 +102,7 @@
                 </div>
             </div>
             <div class="filter-group">
-                <label>Minimum Commission</label>
+                <label data-translate="filter.commission">Minimum Commission</label>
                 <select id="minCommission" onchange="applyFilters()">
                     <option value="0">Any</option>
                     <option value="5">5%+</option>
@@ -102,7 +110,7 @@
                     <option value="15">15%+</option>
                 </select>
             </div>
-            <button onclick="resetFilters()" class="reset-btn">Reset Filters</button>
+            <button onclick="resetFilters()" class="reset-btn" data-translate="filter.reset">Reset Filters</button>
         </div>
     </div>
 
@@ -112,22 +120,22 @@
             <div class="footer-grid">
                 <div class="footer-col">
                     <h3 class="logo">Shadid<span>Animart</span></h3>
-                    <p>Leveling up otakus one deal at a time • Made with 🔥 in Bangladesh</p>
+                    <p data-translate="footer.tagline">Leveling up otakus one deal at a time • Made with 🔥 in Bangladesh</p>
                 </div>
                 <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <a href="#categories">Realms</a>
-                    <a href="#deals">Neon Deals</a>
+                    <h4 data-translate="footer.quick">Quick Links</h4>
+                    <a href="#categories" data-translate="nav.categories">Realms</a>
+                    <a href="#deals" data-translate="nav.deals">Neon Deals</a>
                     <a href="#">Become an Affiliate</a>
                 </div>
                 <div class="footer-col">
-                    <h4>Popular Stores</h4>
+                    <h4 data-translate="footer.stores">Popular Stores</h4>
                     <a href="#">Amazon</a>
                     <a href="#">Alibaba</a>
                     <a href="#">AliExpress</a>
                 </div>
                 <div class="footer-col">
-                    <h4>Connect</h4>
+                    <h4 data-translate="footer.connect">Connect</h4>
                     <div class="social-icons">
                         <a href="https://www.facebook.com/share/1C2KcQfwvn/" target="_blank"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://www.instagram.com/shadid0504" target="_blank"><i class="fab fa-instagram"></i></a>
