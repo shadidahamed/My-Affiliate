@@ -1,20 +1,47 @@
-// 🎥 VIDEO BACKGROUNDS
+// 🎥 VIDEO BACKGROUND
 const videos = [
 "https://cdn.coverr.co/videos/coverr-anime-city-5586/1080p.mp4",
 "https://cdn.coverr.co/videos/coverr-cyberpunk-street-5650/1080p.mp4",
 "https://cdn.coverr.co/videos/coverr-neon-lights-1562/1080p.mp4"
 ];
 
-const videoEl = document.getElementById("bgVideo");
+const bgVideo = document.getElementById("bgVideo");
 
 function loadRandomVideo(){
-const random = videos[Math.floor(Math.random()*videos.length)];
-videoEl.src = random;
-videoEl.play();
+const v = videos[Math.floor(Math.random()*videos.length)];
+bgVideo.src = v;
+bgVideo.play().catch(()=>{});
 }
-
-videoEl.addEventListener("ended", loadRandomVideo);
+bgVideo.addEventListener("ended", loadRandomVideo);
 loadRandomVideo();
+
+
+// 🌍 TRANSLATIONS
+const translations = {
+en:{
+"hero.title":"Level Up Your Collection.<br>Earn While You Otaku.",
+"hero.subtitle":"Premium anime merch & deals",
+"hero.cta":"Enter Shop",
+"deals.title":"Trending Now"
+},
+bn:{
+"hero.title":"তোমার কালেকশন লেভেল আপ করো<br>ওটাকু হয়ে আয় করো",
+"hero.subtitle":"প্রিমিয়াম অ্যানিমে প্রোডাক্ট",
+"hero.cta":"শপে ঢোকো",
+"deals.title":"ট্রেন্ডিং এখন"
+}
+};
+
+let currentLang="en";
+
+function changeLanguage(lang){
+currentLang=lang;
+
+document.querySelectorAll("[data-translate]").forEach(el=>{
+const key=el.getAttribute("data-translate");
+el.innerHTML = translations[lang][key] || translations["en"][key];
+});
+}
 
 
 // 💰 CURRENCY
@@ -49,24 +76,6 @@ grid.innerHTML=products.map(p=>`
 <p class="price">${getPrice(p.price)}</p>
 </div>
 `).join("");
-
-// 🎯 3D TILT EFFECT
-document.querySelectorAll(".product-card").forEach(card=>{
-card.addEventListener("mousemove",e=>{
-const rect=card.getBoundingClientRect();
-const x=e.clientX-rect.left;
-const y=e.clientY-rect.top;
-
-const rotateX=(y/rect.height-0.5)*10;
-const rotateY=(x/rect.width-0.5)*-10;
-
-card.style.transform=`rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
-});
-
-card.addEventListener("mouseleave",()=>{
-card.style.transform="rotateX(0) rotateY(0)";
-});
-});
 }
 
 
@@ -87,7 +96,7 @@ document.getElementById("modal").style.display="none";
 
 function copyLink(){
 navigator.clipboard.writeText("your-affiliate-link.com");
-alert("Link copied!");
+alert("Copied!");
 }
 
 
@@ -98,4 +107,7 @@ document.getElementById("deals").scrollIntoView({behavior:"smooth"});
 
 
 // INIT
+document.addEventListener("DOMContentLoaded",()=>{
+changeLanguage("en");
 renderProducts();
+});
