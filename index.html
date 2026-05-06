@@ -13,29 +13,37 @@
 
 <!-- 🎥 VIDEO BACKGROUND -->
 <video id="bgVideo" autoplay muted playsinline></video>
+<div class="video-overlay"></div>
 
-<!-- NAV -->
+<!-- NAVBAR -->
 <nav class="navbar glass">
     <div class="logo">Shadid<span>Animart</span></div>
 
     <div class="nav-right">
+        <select id="langSelect" onchange="changeLanguage(this.value)">
+            <option value="en">EN</option>
+            <option value="bn">BN</option>
+        </select>
+
         <select id="currencySelect" onchange="changeCurrency()">
-            <option value="USD">$ USD</option>
-            <option value="BDT">৳ BDT</option>
+            <option value="USD">USD</option>
+            <option value="BDT">BDT</option>
         </select>
     </div>
 </nav>
 
 <!-- HERO -->
-<header class="hero">
-    <h1>Level Up Your Collection</h1>
-    <p>Anime Figures • Cosplay • Affiliate Deals</p>
-    <button onclick="scrollToDeals()">Enter Shop</button>
+<header class="hero video-hero">
+    <div class="container">
+        <h1 data-translate="hero.title"></h1>
+        <p data-translate="hero.subtitle"></p>
+        <button onclick="scrollToDeals()" data-translate="hero.cta"></button>
+    </div>
 </header>
 
 <!-- PRODUCTS -->
 <section id="deals">
-    <h2>🔥 Trending Anime Deals</h2>
+    <h2 data-translate="deals.title"></h2>
     <div id="productsGrid"></div>
 </section>
 
